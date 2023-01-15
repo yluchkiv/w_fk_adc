@@ -1,40 +1,56 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Cortex Debug",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/f.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "gdbPath": "gdb-multiarch",
+      "serverpath": "openocd",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f3x.cfg"
+      ],
+      "svdFile": "${workspaceRoot}/STM32F303.svd"
+    },
+    {
+      "name": "Windows Cortex Debug",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/f.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "gdbPath": "D:\\ARM\\arm-gnu-toolchain-11.3.rel1-mingw-w64-i686-arm-none-eabi\\bin\\arm-none-eabi-gdb.exe",
+      "serverpath": "D:\\ARM\\openocd-v0.11.0-i686-w64-mingw32\\bin\\openocd.exe",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f3x.cfg"
+      ],
+      "svdFile": "${workspaceFolder}/STM32F303.svd"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "d:/ARM/github/w_fk_adc",
+      "program": "d:/ARM/github/w_fk_adc/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
         {
-            "name": "Cortex Debug",
-            "cwd": "${workspaceFolder}",
-            "executable": "${workspaceFolder}/f.elf",
-            "request": "launch",
-            "type": "cortex-debug",
-            "runToEntryPoint": "main",
-            "servertype": "openocd",
-            "gdbPath": "gdb-multiarch",
-            "serverpath": "openocd",
-            "configFiles": [
-                "interface/stlink.cfg",
-                "target/stm32f3x.cfg"
-            ],
-            "svdFile": "${workspaceRoot}/STM32F303.svd",
-        },
-        {
-            "name": "Windows Cortex Debug",
-            "cwd": "${workspaceFolder}",
-            "executable": "${workspaceFolder}/f.elf",
-            "request": "launch",
-            "type": "cortex-debug",
-            "runToEntryPoint": "main",
-            "servertype": "openocd",
-            "gdbPath": "D:\\ARM\\arm-gnu-toolchain-11.3.rel1-mingw-w64-i686-arm-none-eabi\\bin\\arm-none-eabi-gdb.exe",
-            "serverpath": "D:\\ARM\\openocd-v0.11.0-i686-w64-mingw32\\bin\\openocd.exe",
-            "configFiles": [
-                "interface/stlink.cfg",
-                "target/stm32f3x.cfg"
-            ],
-            "svdFile": "${workspaceFolder}/STM32F303.svd"
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
         }
-    ]
+      ]
+    }
+  ]
 }

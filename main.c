@@ -3,6 +3,8 @@
 
 static void clock_init(void);
 
+uint32_t abc =0;
+
 void myDelay(void);
 
 int main()
