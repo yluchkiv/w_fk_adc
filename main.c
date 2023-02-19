@@ -1,9 +1,8 @@
 #include "stm32f3xx.h"
 #include "adc_dma.h"
+#include "uart_diag.h"
 
 static void clock_init(void);
-
-uint32_t abc =0;
 
 void myDelay(void);
 
@@ -14,11 +13,14 @@ int main()
 	gpio_setup();
 	adc_setup();
 	//dma_setup();
+	uart_init();
+
 
     while(1)
     {
 		myDelay();
 		take_sample();
+		uart_send();
 	
     }
     return 0;
@@ -72,4 +74,3 @@ void myDelay(void)
     
 
 }
-
