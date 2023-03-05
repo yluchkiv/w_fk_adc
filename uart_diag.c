@@ -1,5 +1,9 @@
 #include "uart_diag.h"
 #include "stm32f3xx.h"
+#include <stdio.h>
+
+uint32_t adc_raw;
+float adc_value;
 
 void uart_pin_init(void)
 {
@@ -67,5 +71,20 @@ void uart_init(void)
 
 void uart_send(void)
 {
-    USART2->TDR = 'H';
+    //formula needed;
+
+	adc_value = (float)adc_raw / (4096) * 3.3f;
+	char txt[100] = { 0 };
+	snprintf(txt, sizeof(txt),"voltage = %f\r\n", adc_value);
+
+	char* point = &txt[0];
+
+	while(*point)
+	{
+		USART2->TDR = *point;
+		point++;
+		while((USART2->ISR & USART_ISR_TC)==0);
+	}
+
+
 }

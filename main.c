@@ -48,7 +48,7 @@ static void clock_init(void)
 
 	RCC->AHBENR |= RCC_AHBENR_ADC12EN;      // ADC enable (adc 1 and adc 2)
 	RCC->AHBENR |= RCC_AHBENR_DMA1EN;		// DMA1 enable
-    RCC->CFGR |= RCC_CFGR_PPRE1_2;          // APB1 div 2
+    //RCC->CFGR |= RCC_CFGR_PPRE1_2;          // APB1 div 2 - serial works on 9600 
     RCC->CFGR |= RCC_CFGR_PLLMUL9;  		// multiplicator 9 , input 8*9=72MHz
 	RCC->CFGR |= RCC_CFGR_PLLSRC;   		// PLL entry clock source, external selected as PLL input clock
 

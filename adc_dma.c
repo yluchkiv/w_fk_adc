@@ -1,7 +1,7 @@
 #include "stm32f3xx.h"
 #include "adc_dma.h"
 
-volatile uint32_t adc_value;
+extern uint32_t adc_raw;
 
 void gpio_setup(void)                           //pin PA0
 {
@@ -39,7 +39,7 @@ void adc_setup(void) // ADC1 and 2
 void dma_setup(void)
 {
 	DMA1_Channel1->CPAR = (uint32_t)&(ADC1->DR);// 1. Set the peripheral register address in the DMA_CPARx register
-	DMA1_Channel1->CMAR = (uint32_t)&adc_value;// 2. Set the memory address in the DMA_CMARx register
+	DMA1_Channel1->CMAR = (uint32_t)&adc_raw;// 2. Set the memory address in the DMA_CMARx register
 	DMA1_Channel1->CNDTR = 4096;                   // 3. Configure the total number of data to be transferred in the DMA_CNDTRx register
 	DMA1_Channel1->CCR |= DMA_CCR_PL_1;          // 00: ensuring it is Low onfigure the channel priority using the PL[1:0]
 	DMA1_Channel1->CCR &= ~DMA_CCR_MEM2MEM;     // 00: Low
@@ -62,7 +62,7 @@ void take_sample(void)
 {
     
     ADC1->CR |= ADC_CR_ADSTART;                 //start conversion
-    adc_value = ADC1->DR;
+    adc_raw = ADC1->DR;
 
     ADC1->CR |= ADC_CR_ADSTP;                   //stop concersion
 

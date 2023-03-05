@@ -6,5 +6,4 @@ void uart_setup(void);
 void uart_init(void);
 void uart_send(void);
 
-
 #endif

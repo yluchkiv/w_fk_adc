@@ -51,4 +51,6 @@ SECTIONS
     } > RAM
     _bss_ram =  ADDR(.bss);
     _bss_size = SIZEOF(.bss);
+
+    end = ADDR(.bss) + SIZEOF(.bss);
 }

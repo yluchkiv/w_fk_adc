@@ -1,6 +1,6 @@
 CC_FLAGS=-std=c99 -Wall -O0 -g3 -iquote ./ -I ./ -I ./STM32CubeF3/Drivers/CMSIS/Device/ST/STM32F3xx/Include/\
- -I ./STM32CubeF3/Drivers/CMSIS/Core/Include/ -mfloat-abi=soft -mcpu=cortex-m4 -mthumb -gdwarf-5 -D=STM32F303xE
-CC=D:\ARM\arm-gnu-toolchain-11.3.rel1-mingw-w64-i686-arm-none-eabi\bin\arm-none-eabi-gcc.exe
+ -I ./STM32CubeF3/Drivers/CMSIS/Core/Include/ -mfloat-abi=soft -mcpu=cortex-m4 -mthumb -gdwarf-5 -D=STM32F303xE 
+CC=D:\ARM\ver12_2\arm-gnu-toolchain-12.2.rel1-mingw-w64-i686-arm-none-eabi\bin\arm-none-eabi-gcc.exe
 
 
 all: f.elf
@@ -18,7 +18,7 @@ uart_diag.o: uart_diag.c Makefile
 	${CC}  -c uart_diag.c ${CC_FLAGS}
 
 f.elf: startup.o main.o adc_dma.o uart_diag.o Makefile linker_script.ld
-	${CC} -o f.elf main.o startup.o adc_dma.o uart_diag.o -specs=nosys.specs -T linker_script.ld -nostartfiles ${CC_FLAGS}
+	${CC} ${CC_FLAGS} -o f.elf main.o startup.o adc_dma.o uart_diag.o -specs=nosys.specs -u _print_float -nostartfiles -T linker_script.ld 
 	# arm-none-eabi-objdump -D f.elf > f.elf.dump
 	# arm-none-eabi-objcopy -O ihex $@ f.elf.ihex
 	# arm-none-eabi-objcopy -O srec $@ f.elf.srec
