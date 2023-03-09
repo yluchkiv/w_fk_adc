@@ -74,17 +74,14 @@ void uart_send(void)
     //formula needed;
 
 	adc_value = (float)adc_raw / (4096) * 3.3f;
-	char txt[100] = { 0 };
-	snprintf(txt, sizeof(txt),"voltage = %f\r\n", adc_value);
+	//char txt[100] = { 0 };
 
-	char* point = &txt[0];
+	//snprintf(txt, sizeof(txt),"voltage = %f\r\n", adc_value);
 
-	while(*point)
-	{
-		USART2->TDR = *point;
-		point++;
-		while((USART2->ISR & USART_ISR_TC)==0);
-	}
+	//char* point = &txt[0];
+
+	fprintf(stderr, "%.2f V\r\n",adc_value);
+
 
 
 }

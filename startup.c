@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "stm32f3xx.h"
 
 int main(); //declare main funtion
 
@@ -67,32 +68,47 @@ __attribute__((section(".vector_table"))) const uint32_t vector_table[128] =
 
 void _close(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
-void _fstat(void)
+int _fstat(int fd, void *buffer)
 {
+    __asm volatile ("bkpt #0");
+    return 0;
 }
 
 void _getpid(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
 void _isatty(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
 void _kill(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
 void _lseek(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
 void _read(void)
 {
+    __asm volatile ("bkpt #0");
 }
 
-void _write(void)
+int _write(int fd, const char *buf, int count)
 {
+    for(int i = 0; i < count; i++)
+	{
+		USART2->TDR = buf[i];
+		while((USART2->ISR & USART_ISR_TC)==0);
+	}
+
+    return count;
 }

@@ -70,7 +70,7 @@ void myDelay(void)
     {
 
 	}
-	GPIOA->ODR ^= GPIO_ODR_5;
+	GPIOA->ODR ^= GPIO_ODR_5; 
     
 
 }
