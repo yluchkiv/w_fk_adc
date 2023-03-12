@@ -12,13 +12,13 @@ int main()
 
 	gpio_setup();
 	adc_setup();
-	//dma_setup();
+	dma_setup();
 	uart_init();
 
 
     while(1)
     {
-		myDelay();
+		//myDelay();
 		take_sample();
 		uart_send();
 	

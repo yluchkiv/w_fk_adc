@@ -4,6 +4,7 @@
 
 uint32_t adc_raw;
 float adc_value;
+uint16_t samples[2];
 
 void uart_pin_init(void)
 {
@@ -80,7 +81,10 @@ void uart_send(void)
 
 	//char* point = &txt[0];
 
-	fprintf(stderr, "%.2f V\r\n",adc_value);
+	//fprintf(stderr, "%.2f V\r\n",adc_value);
+
+	fprintf(stderr, "Ch1 = %d   Ch2 = %d \r\n",samples[0],samples[1]);
+
 
 
 
